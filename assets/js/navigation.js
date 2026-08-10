@@ -305,7 +305,6 @@ window.DocSite = (() => {
           <div class="footer-content">
             <div class="footer-brand">
               <span class="footer-title">Zoho Deluge Development Standards</span>
-              <span class="footer-subtitle">Internal Developer Reference</span>
             </div>
             <div class="footer-meta">
               <span>Version 1.0</span>
