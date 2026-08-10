@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction | Zoho Deluge Development Standards</title>
+  <meta name="description" content="Internal engineering handbook for writing reliable, secure, maintainable, and high-performance Zoho Deluge code.">
+  
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Introduction | Zoho Deluge Development Standards">
+  <meta property="og:description" content="Overview, core engineering pillars, and guidelines for writing clean Zoho Deluge code.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="./introduction.html">
+  <meta property="og:image" content="../assets/icons/favicon.svg">
+  <link rel="canonical" href="./introduction.html">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Scripts -->
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="../assets/js/theme.js"></script>
+  <script defer src="../assets/js/navigation.js"></script>
+  <script defer src="../assets/js/search.js"></script>
+  <script defer src="../assets/js/app.js"></script>
+</head>
+<body data-page="introduction">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  
+  <div id="site-header"></div>
+  <div id="mobile-scrim" aria-hidden="true"></div>
+
+  <div class="site-shell">
+    <aside id="site-sidebar" class="sidebar" aria-label="Documentation navigation"></aside>
+
+    <main id="main-content" class="content" tabindex="-1">
+      <nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumbs navigation"></nav>
+      
+      <article class="doc-article">
+        <div class="eyebrow">Engineering Manual — Section 1</div>
+        <h1>Introduction & Engineering Governance</h1>
+        <p class="lead">Official internal engineering standards establishing mandatory Deluge development rules across all Zoho implementations.</p>
+
+        <!-- Information Callout -->
+        <div class="callout callout-info">
+          <i data-lucide="shield-alert" aria-hidden="true"></i>
+          <div class="callout-content">
+            <strong>Mandatory Engineering Playbook</strong>
+            <p>This document defines the official internal coding standards for our Zoho Development Team. Compliance is mandatory for all developers, technical leads, and external contractors.</p>
+          </div>
+        </div>
+
+        <!-- 1.1 Purpose & Scope Standard -->
+        <section id="purpose-and-scope">
+          <h2>1.1 Document Purpose & Scope Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Every Deluge script across all Zoho applications (CRM, Books, Creator, Desk, Inventory, etc.) must strictly adhere to these engineering standards. Unstandardized code will be rejected during code reviews.</p>
+
+          <h3>Why</h3>
+          <p>Standardization ensures consistent, maintainable, and readable code across all company projects. It enables any developer to quickly understand, modify, or debug existing Deluge scripts without onboarding friction.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">/* Author : Kishore Employee Code : ETC-029 */</span>
+<span class="kw">map</span> <span class="fn">syncDealToInvoice</span>(<span class="kw">string</span> dealIdStr) 
+{
+    responseMap = <span class="kw">Map</span>();
+    <span class="kw">return</span> responseMap;
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">// No author header, unstandardized logic</span>
+d = zoho.crm.getRecordById(<span class="str">"Deals"</span>, id.toLong());
+m = map();
+m.put(<span class="str">"customer_name"</span>, d.get(<span class="str">"Deal_Name"</span>));
+info m;</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Standard mandatory header included</li>
+              <li>Clean function structure</li>
+              <li>Applies across all Zoho applications</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 1.2 Importance & Benefits Standard -->
+        <section id="importance-and-benefits">
+          <h2>1.2 Importance of Standards & Benefits</h2>
+
+          <h3>Rule</h3>
+          <p>Prioritize code readability, maintainability, and explicit variable declarations over clever or condensed code tricks. All Deluge code must be structured so any team member can scan it in under two minutes.</p>
+
+          <h3>Why</h3>
+          <p>Code is read far more often than it is written. Following clear standards reduces bug resolution time, eliminates technical debt, and speeds up peer code reviews.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">string</span> customerEmail = customerMap.get(<span class="str">"email"</span>);
+<span class="kw">bool</span> isEmailValid = <span class="fn">validateEmailFormat</span>(customerEmail);
+<span class="kw">if</span>(!isEmailValid)
+{
+    <span class="kw">info</span> <span class="str">"Invalid customer email format : "</span> + customerEmail;
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>e = c.get(<span class="str">"email"</span>);
+<span class="kw">if</span>(e == <span class="kw">null</span> || e == <span class="str">""</span> || e.indexOf(<span class="str">"@"</span>) < <span class="num">0</span>) { return <span class="kw">false</span>; }</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Self-documenting variable names</li>
+              <li>Explicit type declarations</li>
+              <li>Readable execution flow</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 1.3 Governance & Audience Standard -->
+        <section id="governance-and-enforcement">
+          <h2>1.3 Target Audience & Compliance Scope Standard</h2>
+
+          <h3>Rule</h3>
+          <p>These standards apply to 100% of internal developers, technical leads, and external contractors writing Zoho Deluge code. No script may be deployed to production without passing the Code Review Checklist.</p>
+
+          <h3>Why</h3>
+          <p>Universal compliance prevents sub-standard code from entering live environments, ensuring high system stability and seamless team collaboration.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">/* Author : Kishore Employee Code : ETC-029 */</span>
+<span class="kw">map</span> <span class="fn">calculateDiscount</span>(<span class="kw">decimal</span> dealAmount)
+{
+    <span class="kw">return</span> <span class="kw">Map</span>();
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">// Direct patch deployed to production without author header or review</span></code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Mandatory author header included</li>
+              <li>Code review completed before deployment</li>
+              <li>Full compliance with engineering standards</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Pager -->
+        <nav id="page-pager" class="page-pager" aria-label="Page navigation"></nav>
+      </article>
+    </main>
+
+    <div id="site-toc-sidebar"></div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+</body>
+</html>

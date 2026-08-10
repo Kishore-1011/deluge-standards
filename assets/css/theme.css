@@ -1,0 +1,116 @@
+/* Modern Color Palette & Design Tokens for Zoho Deluge Documentation */
+
+:root {
+  color-scheme: light;
+  
+  /* Primary Theme Tokens */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-subtle: rgba(37, 99, 235, 0.08);
+  --primary-border: rgba(37, 99, 235, 0.25);
+  
+  --accent: #0ea5e9;
+  --accent-subtle: rgba(14, 165, 233, 0.1);
+  
+  --success: #22c55e;
+  --success-subtle: rgba(34, 197, 94, 0.1);
+  --success-border: rgba(34, 197, 94, 0.25);
+  
+  --warning: #f59e0b;
+  --warning-subtle: rgba(245, 158, 11, 0.1);
+  --warning-border: rgba(245, 158, 11, 0.3);
+  
+  --danger: #ef4444;
+  --danger-subtle: rgba(239, 68, 68, 0.1);
+  --danger-border: rgba(239, 68, 68, 0.3);
+
+  /* Surface & Background Colors */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --surface-hover: #f1f5f9;
+  --surface-active: #e2e8f0;
+
+  /* Typography Colors */
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  /* Code Block Tokens */
+  --code-bg: #0d1117;
+  --code-header-bg: #161b22;
+  --code-border: #30363d;
+  --code-text: #e6edf3;
+  
+  /* Syntax Highlighting */
+  --syn-kw: #ff7b72;
+  --syn-str: #a5d6ff;
+  --syn-fn: #d2a8ff;
+  --syn-cm: #8b949e;
+  --syn-num: #79c0ff;
+  --syn-var: #ffa657;
+
+  /* Layout & Shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+  --shadow-overlay: 0 20px 48px -8px rgba(0, 0, 0, 0.35);
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Dark Mode Surfaces - GitHub Dark Inspired */
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-alt: #0d1117;
+  --surface-hover: #21262d;
+  --surface-active: #30363d;
+
+  /* Typography Colors */
+  --text: #f0f6fc;
+  --text-muted: #8b949e;
+  --text-subtle: #6e7681;
+  --border: #30363d;
+  --border-strong: #484f58;
+
+  /* Accent Adjustments for Dark Mode */
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-subtle: rgba(59, 130, 246, 0.15);
+  --primary-border: rgba(59, 130, 246, 0.35);
+
+  --accent: #38bdf8;
+  --accent-subtle: rgba(56, 189, 248, 0.15);
+
+  --success: #4ade80;
+  --success-subtle: rgba(74, 222, 128, 0.15);
+  --success-border: rgba(74, 222, 128, 0.35);
+
+  --warning: #fbbf24;
+  --warning-subtle: rgba(251, 191, 36, 0.15);
+  --warning-border: rgba(251, 191, 36, 0.35);
+
+  --danger: #f87171;
+  --danger-subtle: rgba(248, 113, 113, 0.15);
+  --danger-border: rgba(248, 113, 113, 0.35);
+
+  /* Code Block Tokens */
+  --code-bg: #010409;
+  --code-header-bg: #161b22;
+  --code-border: #30363d;
+  --code-text: #c9d1d9;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px 0 rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 36px 0 rgba(0, 0, 0, 0.5);
+}

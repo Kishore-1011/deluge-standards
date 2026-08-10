@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deluge Coding Standards | Zoho Deluge Standards</title>
+  <meta name="description" content="Comprehensive naming conventions, variable declaration, function headers, error handling, logging, and null-safe coding standards for Zoho Deluge.">
+  
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Deluge Coding Standards | Zoho Deluge Standards">
+  <meta property="og:description" content="Deluge coding conventions, function headers, error handling, logging rules, and null safe coding patterns.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="./naming-convention.html">
+  <meta property="og:image" content="../assets/icons/favicon.svg">
+  <link rel="canonical" href="./naming-convention.html">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Scripts -->
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="../assets/js/theme.js"></script>
+  <script defer src="../assets/js/navigation.js"></script>
+  <script defer src="../assets/js/search.js"></script>
+  <script defer src="../assets/js/app.js"></script>
+</head>
+<body data-page="naming-convention">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  
+  <div id="site-header"></div>
+  <div id="mobile-scrim" aria-hidden="true"></div>
+
+  <div class="site-shell">
+    <aside id="site-sidebar" class="sidebar" aria-label="Documentation navigation"></aside>
+
+    <main id="main-content" class="content" tabindex="-1">
+      <nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumbs navigation"></nav>
+      
+      <article class="doc-article" id="naming-convention">
+        <div class="eyebrow">Engineering Manual — Section 2</div>
+        <h1>Deluge Coding Standards & Conventions</h1>
+        <p class="lead">Mandatory corporate engineering rules governing identifier naming, function headers, variable declarations, error isolation, formatting, logging, and null-safe execution in Zoho Deluge.</p>
+
+        <!-- Information Callout -->
+        <div class="callout callout-info">
+          <i data-lucide="shield-check" aria-hidden="true"></i>
+          <div class="callout-content">
+            <strong>Mandatory Compliance Rule</strong>
+            <p>Every developer must adhere strictly to these Deluge coding standards. Code containing single-letter variables, unhandled API calls, or missing function headers will be rejected in pull request audits.</p>
+          </div>
+        </div>        <!-- 2.1 Variable Naming Standard -->
+        <section id="variable-naming">
+          <h2>2.1 Variable Naming Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Use lowerCamelCase and meaningful variable names that clearly represent the business data they store. Never use single-letter variables (x, y, z) or generic names (data, temp, map1, val).</p>
+
+          <h3>Why</h3>
+          <p>Meaningful variable names make code self-documenting. Developers can understand variable purpose immediately without tracing execution history.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">string</span> customerName = <span class="str">"Alex Rivera"</span>;
+<span class="kw">string</span> invoiceId = <span class="str">"INV-883019"</span>;
+<span class="kw">decimal</span> invoiceAmount = <span class="num">1450.50</span>;</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>a = <span class="str">"Alex Rivera"</span>;
+temp = <span class="str">"INV-883019"</span>;
+x = <span class="num">1450.50</span>;</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Camel Case</li>
+              <li>Meaningful variable names</li>
+              <li>No x, y, z, temp, data</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.2 Function Naming Standard -->
+        <section id="function-naming">
+          <h2>2.2 Function Naming Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Function names must begin with an active verb, use lowerCamelCase, and explicitly describe their business objective and target entity.</p>
+
+          <h3>Why</h3>
+          <p>Active verb prefixes clearly communicate what operation the function performs without requiring inspection of its internal implementation.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">map</span> <span class="fn">createInvoice</span>(<span class="kw">map</span> requestPayloadMap) { ... }
+<span class="kw">map</span> <span class="fn">syncCustomer</span>(<span class="kw">string</span> customerIdStr) { ... }
+<span class="kw">decimal</span> <span class="fn">calculateTax</span>(<span class="kw">decimal</span> subtotalAmount, <span class="kw">decimal</span> taxRate) { ... }</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="fn">invoiceFunc</span>()
+<span class="fn">handleData</span>()
+<span class="fn">sync</span>()</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Active verb prefix (create, update, sync, calculate)</li>
+              <li>Includes target business entity</li>
+              <li>lowerCamelCase</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.3 API Variable Naming Standard -->
+        <section id="api-variable-naming">
+          <h2>2.3 API Variable Naming Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Use standard API variable names for HTTP headers (headersMap), request payload maps (createInvoiceMap), system responses (crmAPIResponse, booksAPIResponse), and sub-collections (lineItems, lineItem).</p>
+
+          <h3>Why</h3>
+          <p>Standardized API variable names maintain structural consistency across multi-system integrations, making payload transformations predictable across teams.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">map</span> headersMap = <span class="kw">Map</span>();
+<span class="kw">map</span> createInvoiceMap = <span class="kw">Map</span>();
+<span class="kw">list</span> lineItems = <span class="kw">List</span>();
+<span class="kw">map</span> booksAPIResponse = <span class="kw">invokeurl</span> [ ... ];</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>h = map();
+inv_data = map();
+items_arr = list();
+res = invokeurl [ ... ];</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Headers in headersMap</li>
+              <li>Service-prefixed response variables</li>
+              <li>Standard collection naming (lineItems, lineItem)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.4 Variable Declaration Standard -->
+        <section id="variable-declaration">
+          <h2>2.4 Variable Declaration & Initialization Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Explicitly declare variables before use and initialize all Map structures using Map() and List structures using List() before population.</p>
+
+          <h3>Why</h3>
+          <p>Calling .put() on an uninitialized Map or .add() on an uninitialized List raises a breaking Deluge runtime execution error.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">map</span> paramMap = <span class="kw">Map</span>();
+<span class="kw">list</span> customerIdList = <span class="kw">List</span>();
+paramMap.put(<span class="str">"status"</span>, <span class="str">"ACTIVE"</span>);
+customerIdList.add(<span class="str">"CUST-101"</span>);</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>myMap.put(<span class="str">"key"</span>, <span class="str">"value"</span>);
+myList.add(<span class="str">"item"</span>);</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Explicit Map() initialization</li>
+              <li>Explicit List() initialization</li>
+              <li>No uninitialized collection access</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.5 Code Formatting Standard -->
+        <section id="code-formatting">
+          <h2>2.5 Code Formatting & Structure Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Apply 4-space indentation across all code blocks, group related statements into logical sections separated by blank lines, and vertically align multi-line invokeurl parameters.</p>
+
+          <h3>Why</h3>
+          <p>Clean formatting ensures code structure is easy to scan, allowing developers to trace logic branches and parameters in seconds.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">if</span>(customerIdStr == <span class="str">""</span> || customerIdStr == <span class="kw">null</span>)
+{
+    responseMap.put(<span class="str">"status"</span>, <span class="str">"ERROR"</span>);
+    <span class="kw">return</span> responseMap;
+}
+
+crmAPIResponse = <span class="kw">invokeurl</span>
+[
+    url :<span class="str">"https://www.zohoapis.com/crm/v3/Contacts/"</span> + customerIdStr
+    type :PUT
+    connection :<span class="str">"zcrm"</span>
+];</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">if</span>(customerIdStr==<span class="str">""</span>||customerIdStr==<span class="kw">null</span>){responseMap.put(<span class="str">"status"</span>,<span class="str">"ERROR"</span>);<span class="kw">return</span> responseMap;}
+res=invokeurl[url:<span class="str">"https://www.zohoapis.com/crm/v3/Contacts/"</span>+customerIdStr,type:PUT,connection:<span class="str">"zcrm"</span>];</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>4-space indentation</li>
+              <li>Vertically aligned invokeurl parameters</li>
+              <li>Logical blocks separated by blank lines</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.6 Function Header Standard -->
+        <section id="function-header">
+          <h2>2.6 Function Header Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Every function must begin with line 1 containing only the mandatory header comment block: <code>/* Author : Kishore Employee Code : ETC-029 */</code>. Remove Purpose, Dependencies, Connections, Modified Date, and all other metadata.</p>
+
+          <h3>Why</h3>
+          <p>A simple header establishes script author ownership clearly without bloating code files with metadata that quickly becomes outdated.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">/* Author : Kishore Employee Code : ETC-029 */</span>
+<span class="kw">decimal</span> <span class="fn">calculateDealDiscount</span>(<span class="kw">decimal</span> dealAmount)
+{
+    <span class="kw">return</span> dealAmount * <span class="num">0.10</span>;
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">/*==================================================================
+ * Author        : Kishore
+ * Employee Code : ETC-029
+ * Purpose       : Calculates tiered volume discounts for Deals
+ * Connections   : zcrm
+ * Last Modified : 2026-08-10
+ * Revision Hist : v1.0, v1.1
+ *==================================================================*/</span></code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Header on line 1</li>
+              <li>Contains Author Name</li>
+              <li>Contains Employee Code</li>
+              <li>No extra metadata</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.7 Commenting Standards -->
+        <section id="commenting-standards">
+          <h2>2.7 Commenting Standards</h2>
+          
+          <h3>Rule</h3>
+          <p>Comment business logic, compliance rules, and non-obvious algorithms. Never write comments explaining self-explanatory programming syntax.</p>
+
+          <h3>Why</h3>
+          <p>Comments should explain why a business rule exists, not what standard language syntax does.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">// Apply 15% VIP discount for enterprise accounts over $50k</span>
+<span class="kw">if</span>(accountTypeStr == <span class="str">"ENTERPRISE"</span> && totalVolumeAmount > <span class="num">50000</span>)
+{
+    discountRate = <span class="num">0.15</span>;
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="cm">// Check if account type is equal to enterprise</span>
+<span class="kw">if</span>(accountTypeStr == <span class="str">"ENTERPRISE"</span>)
+{
+    <span class="cm">// Set discount rate to 0.15</span>
+    discountRate = <span class="num">0.15</span>;
+}</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Explains business rationale (WHY)</li>
+              <li>No redundant syntax notes</li>
+              <li>Obsolete debug comments removed</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.8 Error Handling Standard -->
+        <section id="error-handling">
+          <h2>2.8 Error Handling & Exception Management Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Every API must validate the response. Handle failures gracefully, return meaningful error maps, and log failures.</p>
+
+          <h3>Why</h3>
+          <p>Unchecked API responses lead to silent failures and runtime crashes when downstream logic attempts to process missing or null data.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>booksAPIResponse = <span class="kw">invokeurl</span> [ ... ];
+<span class="kw">if</span>(booksAPIResponse.get(<span class="str">"code"</span>) != <span class="num">0</span> || !booksAPIResponse.containsKey(<span class="str">"invoice"</span>))
+{
+    <span class="kw">info</span> <span class="str">"Books API Failed : "</span> + booksAPIResponse.get(<span class="str">"message"</span>);
+    errorMap = <span class="kw">Map</span>();
+    errorMap.put(<span class="str">"status"</span>, <span class="str">"ERROR"</span>);
+    errorMap.put(<span class="str">"message"</span>, booksAPIResponse.get(<span class="str">"message"</span>));
+    <span class="kw">return</span> errorMap;
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>booksAPIResponse = <span class="kw">invokeurl</span> [ ... ];
+invoiceId = booksAPIResponse.get(<span class="str">"invoice"</span>).get(<span class="str">"invoice_id"</span>);</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Validates API response status</li>
+              <li>Handles failures gracefully</li>
+              <li>Returns meaningful error map</li>
+              <li>Logs failure details</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.9 Logging Standards -->
+        <section id="logging-standards">
+          <h2>2.9 Operational Audit & Diagnostic Logging Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Use info only for meaningful business logs (e.g. creation events, sync operations, API failures). Never log debug spam like "Reached Here" or raw map objects inside loops.</p>
+
+          <h3>Why</h3>
+          <p>Meaningful logs maintain clean execution logs, making production troubleshooting simple and fast.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">info</span> <span class="str">"Invoice Created : "</span> + invoiceId;</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code><span class="kw">info</span> <span class="str">"Reached Here"</span>;
+<span class="kw">info</span> response;
+<span class="kw">info</span> x;</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Meaningful business logs only</li>
+              <li>No "Reached Here" or "test" logs</li>
+              <li>No raw map logging in loops</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.10 Null Safe Coding Standard -->
+        <section id="null-safe-coding">
+          <h2>2.10 Null-Safe Coding & Guard Clauses Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Validate map keys using containsKey(), check list sizes, and verify non-null values before property access or type casting (.toString(), .toLong()).</p>
+
+          <h3>Why</h3>
+          <p>Invoking .toString() or accessing missing keys on a null object causes an immediate Deluge execution crash.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>customerPhoneStr = <span class="str">""</span>;
+<span class="kw">if</span>(customerMap != <span class="kw">null</span> && customerMap.containsKey(<span class="str">"phone"</span>) && customerMap.get(<span class="str">"phone"</span>) != <span class="kw">null</span>)
+{
+    customerPhoneStr = customerMap.get(<span class="str">"phone"</span>).toString();
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>customerPhoneStr = customerMap.get(<span class="str">"phone"</span>).toString();</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Key validation with containsKey()</li>
+              <li>Null check before .toString() / .toLong()</li>
+              <li>List size verified before index access</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.11 API Response Validation Standard -->
+        <section id="api-response-validation">
+          <h2>2.11 API Response Validation Standard</h2>
+          
+          <h3>Rule</h3>
+          <p>Validate API responses by checking Status Code, Mandatory Keys, Error Message Fields, and both Success and Failure conditions before reading payload values.</p>
+
+          <h3>Why</h3>
+          <p>APIs may return HTTP status 200 while containing internal error codes in the response body payload.</p>
+
+          <h3>Example</h3>
+          <div class="example-label good"><i data-lucide="check-circle-2"></i> Good Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>crmAPIResponse = <span class="kw">invokeurl</span> [ ... ];
+<span class="kw">if</span>(crmAPIResponse != <span class="kw">null</span> && crmAPIResponse.containsKey(<span class="str">"data"</span>))
+{
+    dataList = crmAPIResponse.get(<span class="str">"data"</span>);
+    <span class="kw">if</span>(dataList != <span class="kw">null</span> && dataList.size() > <span class="num">0</span> && dataList.get(<span class="num">0</span>).get(<span class="str">"status"</span>) == <span class="str">"SUCCESS"</span>)
+    {
+        <span class="kw">info</span> <span class="str">"CRM Contact Updated : "</span> + customerId;
+    }
+}</code></pre>
+          </div>
+
+          <div class="example-label bad"><i data-lucide="x-circle"></i> Bad Example</div>
+          <div class="code-block">
+            <div class="code-toolbar">
+              <span class="lang-indicator"><span class="lang-dot"></span> deluge</span>
+              <button class="copy-btn"><i data-lucide="copy"></i> Copy</button>
+            </div>
+            <pre><code>crmAPIResponse = <span class="kw">invokeurl</span> [ ... ];
+recordId = crmAPIResponse.get(<span class="str">"data"</span>).get(<span class="num">0</span>).get(<span class="str">"details"</span>).get(<span class="str">"id"</span>);</code></pre>
+          </div>
+
+          <h3>Checklist</h3>
+          <div class="checklist-card">
+            <ul>
+              <li>Response map null check</li>
+              <li>Mandatory keys verified</li>
+              <li>Success and failure paths handled</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Pager -->
+        <nav id="page-pager" class="page-pager" aria-label="Page navigation"></nav>
+      </article>
+    </main>
+
+    <div id="site-toc-sidebar"></div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+</body>
+</html>

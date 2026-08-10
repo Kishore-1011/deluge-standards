@@ -1,0 +1,99 @@
+{
+  "version": "2.0.0",
+  "updated": "August 10, 2026",
+  "author": "Zoho Engineering Standards Guild",
+  "repository": "https://github.com/your-org/zoho-deluge-development-standards",
+  "pages": [
+    {
+      "id": "introduction",
+      "title": "Introduction & Governance",
+      "path": "index.html",
+      "description": "Overview, principles, architecture rules, and engineering governance for Zoho Deluge development",
+      "icon": "book-open",
+      "children": [
+        "Document Purpose & Scope",
+        "Importance & Benefits",
+        "Compliance Scope"
+      ]
+    },
+    {
+      "id": "naming-convention",
+      "title": "Deluge Coding Standards",
+      "path": "pages/naming-convention.html",
+      "description": "Naming conventions, formatting, function structure, error handling, logging, and null-safe coding",
+      "icon": "code-2",
+      "children": [
+        "Naming Convention",
+        "Variable Naming",
+        "Function Naming",
+        "API Variable Naming",
+        "Variable Declaration",
+        "Code Formatting",
+        "Function Header",
+        "Commenting Standards",
+        "Error Handling",
+        "Logging Standards",
+        "Null Safe Coding",
+        "API Response Validation"
+      ]
+    },
+    {
+      "id": "connection-standards",
+      "title": "Connection Standards",
+      "path": "pages/connection-standards.html",
+      "description": "Secure OAuth2 authentication, integration scopes, connection link names, and connection reuse",
+      "icon": "plug-zap",
+      "children": [
+        "Connection Naming",
+        "Connection Scope Standards",
+        "Scope Minimization"
+      ]
+    },
+    {
+      "id": "api-logging",
+      "title": "API Logging Standards",
+      "path": "pages/api-logging.html",
+      "description": "Observability practices, error tracking, and log formatting",
+      "icon": "file-text",
+      "children": [
+        "API Audit Logging",
+        "Log Schema Attributes"
+      ]
+    },
+    {
+      "id": "configuration",
+      "title": "Configuration Standards",
+      "path": "pages/configuration.html",
+      "description": "Externalizing environment parameters, dynamic variables, switch flags, and secrets isolation",
+      "icon": "settings",
+      "children": [
+        "Config Declaration Policy",
+        "Config Parameters Catalog",
+        "Environment Switching"
+      ]
+    },
+    {
+      "id": "performance",
+      "title": "Performance Guidelines",
+      "path": "pages/performance.html",
+      "description": "Optimizing script runtime, batching API calls, memory control, and governor limit management",
+      "icon": "zap",
+      "children": [
+        "API Call Reduction",
+        "Loop Efficiency",
+        "Payload Trimming"
+      ]
+    },
+    {
+      "id": "code-review-checklist",
+      "title": "Code Review Checklist",
+      "path": "pages/code-review-checklist.html",
+      "description": "Pre-release audit checklist and governance verification",
+      "icon": "check-square",
+      "children": [
+        "Pre Release Audit",
+        "Review Checklist Breakdown"
+      ]
+    }
+  ]
+}
